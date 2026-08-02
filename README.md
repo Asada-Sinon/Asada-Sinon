@@ -8,5 +8,5 @@
 
 ## Stats
 
-| ![Asada-Sinon's GitHub stats](https://github-profile-summary-cards.vercel.app/api/cards/stats?username=Asada-Sinon&theme=tokyonight) | [![Asada-Sinon's GitHub streak](https://streak-stats.demolab.com?user=Asada-Sinon&theme=tokyonight&hide_border=true)](https://git.io/streak-stats) |
+| ![Asada-Sinon's GitHub stats](https://github-readme-stats-ins.vercel.app/api?username=Asada-Sinon&show_icons=true&hide_border=true&theme=tokyonight) | [![Asada-Sinon's GitHub streak](https://streak-stats.demolab.com?user=Asada-Sinon&theme=tokyonight&hide_border=true)](https://git.io/streak-stats) |
 | --- | --- |
