@@ -1,0 +1,40 @@
+name: Refresh stat cards
+
+# Re-snapshots the GitHub stat cards into assets/ once a day. The README points
+# at those committed files instead of the upstream services, so the profile no
+# longer depends on a third-party host answering inside camo's timeout.
+
+on:
+  schedule:
+    # 20:17 UTC daily. Off the hour on purpose: GitHub queues scheduled runs and
+    # delays them most at the top of the hour.
+    - cron: '17 20 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-cards
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Snapshot cards
+        run: bash scripts/snapshot-cards.sh
+
+      - name: Commit if changed
+        run: |
+          if [[ -z "$(git status --porcelain assets)" ]]; then
+            echo "Cards unchanged, nothing to commit."
+            exit 0
+          fi
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets
+          git commit -m 'chore: refresh stat cards'
+          git push
